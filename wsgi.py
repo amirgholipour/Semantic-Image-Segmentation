@@ -1,7 +1,6 @@
 import json
 from flask import Flask, jsonify, request
 from prediction import predict
-from numpy import  array
 application = Flask(__name__)
 
 
