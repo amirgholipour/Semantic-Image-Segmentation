@@ -166,6 +166,7 @@ def process_base64_image(args_dict):
 
 
 def predict(args_dict):
+    print("args_dict")
     if args_dict.get('image') is not None:
         pred_mask = process_base64_image(args_dict)
     else:
