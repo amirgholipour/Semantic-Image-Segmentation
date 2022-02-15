@@ -26,7 +26,7 @@ import matplotlib.gridspec as gridspec
 #######################################
 # Loads a model given a specific path #
 #######################################
-def load_model(path = './models/SemImSeg_model__EfficientNetV2B0.h5' ):
+def load_model(path = './models/SemImSeg_model_EfficientNetV2B0.h5' ):
     try:
         # path = splitext(path)[0]
         model = tf.keras.models.load_model(path)
@@ -36,8 +36,8 @@ def load_model(path = './models/SemImSeg_model__EfficientNetV2B0.h5' ):
         print(e)
             
 # Load models
-img_seg_net_path = "./models/SemImSeg_model__EfficientNetV2B0.h5"
-img_seg_net = load_model(img_seg_net_path)
+img_seg_net_path = "./models/SemImSeg_model_EfficientNetV2B0.h5"
+model = load_model(img_seg_net_path)
 print("[INFO] Model loaded successfully...")
 
 #######
@@ -69,9 +69,10 @@ def normalize_org(input_image, input_mask):
 # Converts colors from BGR (as read by OpenCV) to RGB (so that we can display them), #
 # also eventually resizes the image to fit the size the model has been trained on    #
 ######################################################################################
-def preprocess_image(image_path,resize=False):
+def preprocess_image(image_path,resize=True):
     img = cv2.imread(image_path)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # img = img / 1.0
     # img = img / 255
     if resize:
         img = cv2.resize(img, (128,128))
@@ -136,7 +137,7 @@ def show_predictions_org(dataset=None, num=1):
 ##############################################################################
 def get_segmentation(image_path, Dmax=608, Dmin = 608):
     input_image = preprocess_image(image_path)
-    pred_mask = img_seg_net(input_image)
+    pred_mask = model(input_image)
     
     show_predictions(input_image, pred_mask)
     return create_mask(pred_mask)
@@ -166,10 +167,12 @@ def process_base64_image(args_dict):
 
 
 def predict(args_dict):
-    print("args_dict")
+    
     if args_dict.get('image') is not None:
         pred_mask = process_base64_image(args_dict)
     else:
         filename = os.path.join('dataset/images', args_dict.get('data'))
+        print(filename)
+        print("2")
         pred_mask = process_file(filename)
     return {'pred_mask': pred_mask.numpy().tolist()}
