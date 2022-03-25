@@ -1,0 +1,95 @@
+import os
+import tensorflow as tf
+import subprocess
+import joblib
+import matplotlib.pyplot as plt
+    
+
+import warnings
+warnings.filterwarnings('ignore')
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+    
+
+class trainModel():
+    '''
+    Build Lstm model for tensorflow
+    ----------
+
+    Returns
+    -------
+    self.model:
+        Deep learning based Model
+    
+    '''
+    
+    def __init__(self, model,train_data = None, test_data = None,validation_steps =50, step_per_epoch = 50 ,ckpp ='../../models/SemImSeg_model_EfficientNetV2B0.h5',  val_subsplits = 5,  batch_size=64,epochs=70,sample_image = None,sample_mask = None,display_callback = None):
+        self.model_checkpoint_callback = []
+
+        self.model = model
+        self.train_data = train_data
+
+        self.test_data  = test_data
+
+        self.batch_size = batch_size
+        self.epochs = epochs
+        self.val_subsplits = val_subsplits
+        self.sample_image = sample_image
+        self.sample_mask = sample_mask
+        self.step_per_epoch = step_per_epoch
+        self.validation_steps = validation_steps
+        self.ckpp = ckpp
+        self.display_callback = display_callback
+        self.history = []
+        
+
+        
+    def plotHistory(self):
+        '''
+            Plot Performance Curves
+        '''
+        history = self.history.history
+        acc=history['accuracy']
+        val_acc = history['val_accuracy']
+
+        plt.plot(acc, '-', label='Training Accuracy')
+        plt.plot(val_acc, '--', label='Validation Accuracy')
+        plt.xlabel('Epochs')
+        plt.ylabel('Accuracy')
+        plt.legend()
+        plt.show()
+        
+    def modelTraining(self):
+        '''
+        Define the model
+        ----------
+        
+        Returns
+        -------
+        
+        '''
+
+
+        # VALIDATION_STEPS = info.splits['test'].num_examples//BATCH_SIZE//VAL_SUBSPLITS
+        ## Saving the best model
+        self.model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+            filepath=self.ckpp,
+            #save_weights_only=True,
+            monitor='val_accuracy',
+            mode='max',
+            save_best_only=True)
+        ## Early Stoping
+        self.early_stopping_callback = tf.keras.callbacks.EarlyStopping(
+            monitor='val_loss', patience=20, 
+        )
+        ## Train the model and save the historical information
+        self.history = self.model.fit(
+            self.train_data,
+            epochs=self.epochs,
+              steps_per_epoch=self.step_per_epoch,
+              validation_steps=self.validation_steps,
+              validation_data=self.test_data,
+              callbacks=[self.display_callback(self.model,self.sample_image,self.sample_mask),self.model_checkpoint_callback,self.early_stopping_callback])
+        self.plotHistory()
+        return self.model
+    

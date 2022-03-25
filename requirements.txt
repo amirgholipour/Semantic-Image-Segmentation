@@ -9,3 +9,4 @@ scikit-learn==1.0.2
 matplotlib
 h5py==2.10.0
 tensorflow-addons
+git+https://github.com/tensorflow/examples.git
