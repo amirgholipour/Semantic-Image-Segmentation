@@ -21,18 +21,18 @@ As our application is now a REST API endpoint, there are multiple ways to upload
 
 ### CURL on Linux or Mac with bash/zsh
 
-From anywhere you have an example image like `car.jpg` (replace with the right name in the command, as well as the Route with `/predictions` at the end):
+From anywhere you have an example image like `sample.png` (replace with the right name in the command, as well as the Route with `/predictions` at the end):
 
 ```bash
-(echo -n '{"image": "'; base64 car.jpg; echo '"}') | curl -H "Content-Type: application/json" -d @- http://licence-plate-workshop-git-lpr-workshop.apps.rhods-test.rqdu.p1.openshiftapps.com/predictions
+(echo -n '{"image": "'; base64 sample.png; echo '"}') | curl -H "Content-Type: application/json" -d @- http://semantic-image-segmentation-workshop-git-ai-apps.apps.rhods-internal.61tk.p1.openshiftapps.com/predictions
 ```
 
 ### Invoke-WebRequest on Windows with Powershell
 
-From anywhere you have an example image like `car.jpg` (replace with the complete path and name in the command, as well as the Route with `/predictions` at the end):
+From anywhere you have an example image like `sample.jpg` (replace with the complete path and name in the command, as well as the Route with `/predictions` at the end):
 
 ```powershell
-Write-Output ('{"image": "' + ([Convert]::ToBase64String([IO.File]::ReadAllBytes('C:\Users\Guillaume\Downloads\car.jpg'))) + '"}') | iwr -Uri http://licence-plate-workshop-git-lpr-workshop.apps.rhods-test.rqdu.p1.openshiftapps.com/predictions -Method 'POST' -ContentType: 'application/json' | Select-Object -Expand Content
+Write-Output ('{"image": "' + ([Convert]::ToBase64String([IO.File]::ReadAllBytes('C:\Users\Guillaume\Downloads\sample.png'))) + '"}') | iwr -Uri http://semantic-image-segmentation-workshop-git-ai-apps.apps.rhods-internal.61tk.p1.openshiftapps.com/predictions -Method 'POST' -ContentType: 'application/json' | Select-Object -Expand Content
 ```
 
 ### From a notebook
@@ -45,11 +45,11 @@ Write-Output ('{"image": "' + ([Convert]::ToBase64String([IO.File]::ReadAllBytes
 * Run the cells and see the result!
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/car_send_image.png "Car")
+![alt text](./assets/img/fashion_send_image.png "sample")
 {: refdef}
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/car_send_image_result.png "Result")
+![alt text](./assets/img/fashion_send_image_result.png "Result")
 {: refdef}
 
 Once you're finished, you can come back here and [head to the next section.](step8.md)

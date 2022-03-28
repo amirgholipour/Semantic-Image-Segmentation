@@ -54,6 +54,10 @@ Now that the application code is working, we're ready to package it as a contain
 ![alt text](./assets/img/pinned_builder_image.png "Edit Strategy")
 {: refdef}
 
+{:refdef: style="text-align: center;"}
+![alt text](./assets/img/pinned_builder_image_2.png "Edit Strategy")
+{: refdef}
+
 <!-- Commented out so we can restore this text if we update the requirements.txt in the future. -->
 <!--
 * Leave the other fields as default and scroll down. You will see that OpenShift automatically recognized that our repo contains Python code, and that the right base image has been selected. Pretty neat, eh?!
@@ -87,6 +91,13 @@ Now that the application code is working, we're ready to package it as a contain
 ![alt text](./assets/img/detail_panel.png "Detail")
 {: refdef}
 
+{:refdef: style="text-align: center;"}
+![alt text](./assets/img/detail_panel_2.png "Detail")
+{: refdef}
+
+{:refdef: style="text-align: center;"}
+![alt text](./assets/img/detail_panel_2.png "Detail")
+{: refdef}
 * If you scroll down on the detail panel, you will see the route that was created for your application. This is the URL you will use to send images:
 
 {:refdef: style="text-align: center;"}

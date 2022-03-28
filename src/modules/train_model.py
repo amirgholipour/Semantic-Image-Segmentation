@@ -26,6 +26,7 @@ class trainModel():
     def __init__(self, model,train_data = None, test_data = None,validation_steps =50, step_per_epoch = 50 ,  val_subsplits = 5,  batch_size=64,epochs=70,sample_image = None,sample_mask = None,display_callback = None, fineTune=False,modelDir = None):
         self.model_checkpoint_callback = []
         self.modelDir = modelDir
+        self.fineTune = fineTune
         if self.fineTune == True:
              self.model = tf.keras.models.load_model(self.modelDir)
              self.model.compile(
