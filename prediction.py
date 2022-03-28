@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
 
-
+size = (256,256)
 # Processing functions
 #######################################
 # Loads a model given a specific path #
@@ -42,7 +42,7 @@ print("[INFO] Model loaded successfully...")
 
 #######
 def load_image(datapoint):
-  input_image = tf.image.resize(datapoint['image'], (128, 128))
+  input_image = tf.image.resize(datapoint['image'], size)
 
   input_image = normalize(input_image)
 
@@ -54,8 +54,8 @@ def normalize(input_imagek):
   return input_image
 
 def load_image_org(datapoint):
-  input_image = tf.image.resize(datapoint['image'], (128, 128))
-  input_mask = tf.image.resize(datapoint['segmentation_mask'], (128, 128))
+  input_image = tf.image.resize(datapoint['image'], size)
+  input_mask = tf.image.resize(datapoint['segmentation_mask'], size)
 
   input_image, input_mask = normalize(input_image, input_mask)
 
@@ -71,11 +71,12 @@ def normalize_org(input_image, input_mask):
 ######################################################################################
 def preprocess_image(image_path,resize=True):
     img = cv2.imread(image_path)
+    
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # img = img / 1.0
     # img = img / 255
     if resize:
-        img = cv2.resize(img, (128,128))
+        img = cv2.resize(img, size)
     img = np.expand_dims(img, axis=0)    
     return img
 

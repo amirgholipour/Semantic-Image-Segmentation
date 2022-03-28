@@ -11,15 +11,15 @@ class predictor(object):
         self.model_path = model_path
         self.val = val_data
     def load(self):
-        print("Loading model",os.getpid())
+        print("Loading the model...")
         
         # print(os.getcwd())
         # self.cwd_path = str(Path(os.getcwd()).parents[1])
         self.cwd_path = os.getcwd()
         # print(self.cwd_path )
-        self.model = tf.keras.models.load_model(self.cwd_path+self.model_path)
+        self.model = tf.keras.models.load_model(self.model_path)
         self.loaded = True
-        print("Loaded model")
+        print("The model has loaded!!!")
 
 
 
@@ -28,17 +28,18 @@ class predictor(object):
         self.load()
         pred = self.model.predict(img)
         plt.figure(figsize=(10,5))
-        for i in pred:
-
-            print('####')
-            plt.subplot(121)
-            i = tf.argmax(i, axis=-1)
-            plt.imshow(i,cmap='jet')
-            plt.axis('off')
-            plt.title('Prediction')
-            break
-        plt.subplot(122)
-        plt.imshow(mask[0], cmap='jet')
+        pred = tf.argmax(pred, axis=-1)
+        pred = pred[..., tf.newaxis]
+        plt.subplot(131)
+        plt.imshow(tf.keras.utils.array_to_img(pred[0]), cmap='jet')
+        plt.axis('off')
+        plt.title('Predicted Mask')
+        plt.subplot(132)
+        plt.imshow(tf.keras.utils.array_to_img(mask[0]), cmap='jet')
         plt.axis('off')
         plt.title('Ground Truth')
+        plt.subplot(133)
+        plt.imshow(tf.keras.utils.array_to_img(img[0]))
+        plt.axis('off')
+        plt.title('Original Image')
         plt.show()

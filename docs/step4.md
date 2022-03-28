@@ -16,11 +16,8 @@ Still in you environment, just open the file `02_Semantic_Image_Segmentation.ipy
 {:refdef: style="text-align: center;"}
 ![alt text](./assets/img/notebook_sis_2.png "SIS notebook")
 {: refdef}
-{:refdef: style="text-align: center;"}
-![alt text](./assets/img/notebook_sis_3.png "SIS notebook")
-{: refdef}
 
-At the end of the notebook, it will look like this:
+At the end of the training, it will look like this:
 
 {:refdef: style="text-align: center;"}
 ![alt text](./assets/img/sis_result.png "SIS notebook")

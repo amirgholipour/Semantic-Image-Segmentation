@@ -134,10 +134,10 @@ class preprocessData():
               self.sample_image, self.sample_mask = self.X[i],self.y[i]
 
               # tf.keras.utils.save_img(
-              #       'test_sample_'+str(i)+'.jpg', sample_image
+              #       'test_sample_256_'+str(i)+'.jpg', self.sample_image
               #   )
               # tf.keras.utils.save_img(
-              #       'test_sample__mask_'+str(i)+'.jpg', sample_mask
+              #       'test_sample_256_mask_'+str(i)+'.jpg', self.sample_mask
               #   )  
               visualizeData(display_list = [self.sample_image, self.sample_mask]).display()
     def dataPreProcessing(self):

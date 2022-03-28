@@ -21,7 +21,7 @@ Some explanations first:
 After these explanations, you are ready to open the file `03_SIS_run_application.ipynb`, and follow the instructions directly in the notebook!
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/lpr_run.png "SIS notebook")
+![alt text](./assets/img/sis_run.png "SIS notebook")
 {: refdef}
 
 You'll first launch the Server:
@@ -35,7 +35,11 @@ Now, to test, open the file `04_SIS_test_application.ipynb` and follow the instr
 Query the API:
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/query_api.png "Query API")
+![alt text](./assets/img/query_api_1.png "Query API")
+{: refdef}
+
+{:refdef: style="text-align: center;"}
+![alt text](./assets/img/query_api_2.png "Query API")
 {: refdef}
 
 Once you're finished, you can come back here and [head to the next section.](step6.md)
