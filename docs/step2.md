@@ -22,20 +22,20 @@ In the "file-browser" like window you're in right now, you'll find the files and
 ![alt text](./assets/img/clone_repo.png "Git")
 {: refdef}
 
-* Enter this URL, `https://github.com/rh-aiservices-bu/licence-plate-workshop.git`, then click on "CLONE":
+* Enter this URL, `https://github.com/amirgholipour/Semantic-Image-Segmentation-Workshop.git`, then click on "CLONE":
 
 {:refdef: style="text-align: center;"}
 ![alt text](./assets/img/clone_start.png "Git")
 {: refdef}
 
-* It takes a few seconds, after which you can double-click and navigate to the newly-created folder, `licence-plate-workshop`:
+* It takes a few seconds, after which you can double-click and navigate to the newly-created folder, `Semantic-Image-Segmentation-Workshop`:
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/lp_folder_click.png "Git")
+![alt text](./assets/img/sis_folder_click.png "Git")
 {: refdef}
 ---
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/lp_folder.png "Git")
+![alt text](./assets/img/sis_folder.png "Git")
 {: refdef}
 
 [Ready? Let's go to the next section.](step3.md)
@@ -43,11 +43,11 @@ In the "file-browser" like window you're in right now, you'll find the files and
 ## Navigation
 
 <!-- startnav -->
-* [Red Hat OpenShift Data Science Workshop - Licence plate recognition](index.md)
+* [Red Hat OpenShift Data Science Workshop - Semantic image Segmentation](index.md)
 * [Step 1: Starting a Jupyter environment](step1.md)
 * [Step 2: The Jupyter environment](step2.md)**<-- you are here**
 * [Step 3: Notebooks](step3.md)
-* [Step 4: Licence plate recognition](step4.md)
+* [Step 4: Semantic image Segmentation](step4.md)
 * [Step 5: Packaging the model as an API](step5.md)
 * [Step 6: Packaging our application](step6.md)
 * [Step 7: Testing the application](step7.md)

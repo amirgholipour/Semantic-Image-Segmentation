@@ -17,7 +17,7 @@ class buildModel():
         Deep learning based Model
     
     '''
-    def __init__(self,train_data=None, modelName = 'EfficientNetV2B0', input_shape = [128, 128, 3], numOutClass = 59,pre_weight_flag = False, weights="imagenet", height= 128, width= 128, channels= 3, include_top=False, pooling=None, alpha=1.0,depth_multiplier=1, dropout=0.001):
+    def __init__(self,train_data=None, modelName = 'EfficientNetV2B0', input_shape = [256, 256, 3], numOutClass = 59,pre_weight_flag = False, weights="imagenet", include_top=False, pooling=None, alpha=1.0,depth_multiplier=1, dropout=0.001):
         self.train_data = train_data
         self.model_name = modelName
         self.base_model = []
@@ -34,9 +34,9 @@ class buildModel():
         self.pre_weight_flag = pre_weight_flag
         
         self.weights = weights
-        self.height = height
-        self.width = width
-        self.channels = channels
+        self.height = input_shape[0]
+        self.width = input_shape[1]
+        self.channels = input_shape[2]
         self.include_top = include_top
         self.pooling = pooling
         self.alpha = alpha

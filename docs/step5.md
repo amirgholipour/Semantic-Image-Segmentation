@@ -6,7 +6,7 @@ nav_order: 3
 
 # Step 5: Packaging the model as an API
 
-In the previous section, we learned how to create the code that will be able to extract the number from a given licence plate. But of course we cannot use a notebook directly like this in a production environment.
+In the previous section, we learned how to create the code that will be able to do semantic segmention on fasion data. But of course we cannot use a notebook directly like this in a production environment.
 
 So now we will learn how to **package** this code as an **API** that you can directly query from other applications.
 
@@ -18,10 +18,10 @@ Some explanations first:
 
 * There are other files in the folder that are used to provide functions to launch a web server that will be used to serve our API.
 
-After these explanations, you are ready to open the file `03_LPR_run_application.ipynb`, and follow the instructions directly in the notebook!
+After these explanations, you are ready to open the file `03_SIS_run_application.ipynb`, and follow the instructions directly in the notebook!
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/lpr_run.png "LPR notebook")
+![alt text](./assets/img/lpr_run.png "SIS notebook")
 {: refdef}
 
 You'll first launch the Server:
@@ -30,7 +30,7 @@ You'll first launch the Server:
 ![alt text](./assets/img/launch_server.png "Launch Server")
 {: refdef}
 
-Now, to test, open the file `04_LPR_test_application.ipynb` and follow the instructions.
+Now, to test, open the file `04_SIS_test_application.ipynb` and follow the instructions.
 
 Query the API:
 
@@ -43,11 +43,11 @@ Once you're finished, you can come back here and [head to the next section.](ste
 ## Navigation
 
 <!-- startnav -->
-* [Red Hat OpenShift Data Science Workshop - Licence plate recognition](index.md)
+* [Red Hat OpenShift Data Science Workshop - Semantic image Segmentation](index.md)
 * [Step 1: Starting a Jupyter environment](step1.md)
 * [Step 2: The Jupyter environment](step2.md)
 * [Step 3: Notebooks](step3.md)
-* [Step 4: Licence plate recognition](step4.md)
+* [Step 4: Semantic image Segmentation](step4.md)
 * [Step 5: Packaging the model as an API](step5.md)**<-- you are here**
 * [Step 6: Packaging our application](step6.md)
 * [Step 7: Testing the application](step7.md)

@@ -36,6 +36,7 @@ class preprocessData():
         self.batch = 64
         self.at = tf.data.AUTOTUNE
         self.buffer  = 1000
+        self.size = (256,256)
         
 
         
@@ -45,12 +46,12 @@ class preprocessData():
         if self.normalize  == True:
             image = image/255.0
         # resize image
-        image = tf.image.resize(image, (128,128))
+        image = tf.image.resize(image, self.size)
         return image
     #### Functions for augmentation
     def resizeMask(self, mask):
         mask = tf.expand_dims(mask, axis=-1)
-        mask = tf.image.resize(mask, (128,128))
+        mask = tf.image.resize(mask, self.size)
         mask = tf.cast(mask, tf.uint8)
         return mask  
     
@@ -68,9 +69,9 @@ class preprocessData():
 
     def crop(self,img, mask):
         img = tf.image.central_crop(img, 0.7)
-        img = tf.image.resize(img, (128,128))
+        img = tf.image.resize(img, self.size)
         mask = tf.image.central_crop(mask, 0.7)
-        mask = tf.image.resize(mask, (128,128))
+        mask = tf.image.resize(mask, self.size)
         mask = tf.cast(mask, tf.uint8)
         return img, mask
 

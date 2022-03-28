@@ -30,7 +30,7 @@ Now that the application code is working, we're ready to package it as a contain
 ![alt text](./assets/img/from_git.png "Git")
 {: refdef}
 
-* In the `Git Repo URL`field, enter: `https://github.com/rh-aiservices-bu/licence-plate-workshop.git`
+* In the `Git Repo URL`field, enter: `https://github.com/amirgholipour/Semantic-Image-Segmentation-Workshop.git`
 
 {:refdef: style="text-align: center;"}
 ![alt text](./assets/img/git_repo.png "Git repo")
@@ -98,11 +98,11 @@ Once you're finished, you can come back here and [head to the next section.](ste
 ## Navigation
 
 <!-- startnav -->
-* [Red Hat OpenShift Data Science Workshop - Licence plate recognition](index.md)
+* [Red Hat OpenShift Data Science Workshop - Semantic image Segmentation](index.md)
 * [Step 1: Starting a Jupyter environment](step1.md)
 * [Step 2: The Jupyter environment](step2.md)
 * [Step 3: Notebooks](step3.md)
-* [Step 4: Licence plate recognition](step4.md)
+* [Step 4: Semantic image Segmentation](step4.md)
 * [Step 5: Packaging the model as an API](step5.md)
 * [Step 6: Packaging our application](step6.md)**<-- you are here**
 * [Step 7: Testing the application](step7.md)

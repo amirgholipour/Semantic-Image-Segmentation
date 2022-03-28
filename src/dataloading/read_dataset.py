@@ -21,7 +21,7 @@ class readData():
         Output masks of images
 
     '''
-    def __init__(self, cwd_path = None,repo_link =  "https://github.com/bearpaw/clothing-co-parsing.git", existing_dir = True ):
+    def __init__(self, cwd_path = None,repo_link =  "https://github.com/amirgholipour/clothing-co-parsing.git", existing_dir = True ):
 #     def __init__(self, *args, **kwargs):
         
         self.cwd_path = os.getcwd()
