@@ -5,6 +5,9 @@ from tensorflow_examples.models.pix2pix import pix2pix
 import tensorflow_addons as tfa
 import tensorflow.keras.backend as K
 import matplotlib.pyplot as plt
+import sys
+sys.path.append("..")
+from  src import  tasm
 
 class buildModel():
     '''
@@ -146,7 +149,8 @@ class buildModel():
         
         self.model.compile(
         optimizer='adam',#tfa.optimizers.Yogi(learning_rate=0.001),
-        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
+        # loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
+        loss = tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0) + tasm.losses.DiceLoss(),metrics=[tasm.metrics.IOUScore(threshold=0.5)])
 #         return self.model
     
     def checkDataModel(self):
@@ -175,12 +179,17 @@ class buildModel():
         -------
         
         '''
-        if self.pre_weight_flag ==True:
-            self.model = tf.keras.models.load_model('./models/SemImSeg_model_EfficientNetV2B0.h5')
-        else:
+#         if self.pre_weight_flag ==True:
+#             self.model = tf.keras.models.load_model('./models/SemImSeg_model_EfficientNetV2B0.h5')
+#         else:
                 
-            self.defineModel()
+#             self.defineModel()
+        base_model, layers, layer_names = tasm.create_base_model(name=self.model_name, weights=self.weights, height=self.height, width=self.width, include_top=False, pooling=None)
+
+        BACKBONE_TRAINABLE = False
+        self.model = tasm.DeepLabV3plus(n_classes=59, base_model=base_model, output_layers=layers, backbone_trainable=BACKBONE_TRAINABLE)
         self.CompileModel()
+        self.model.build((None, self.height, self.width, 3))
         self.model.summary()
         self.checkDataModel()
         return self.model
