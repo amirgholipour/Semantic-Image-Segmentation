@@ -23,10 +23,18 @@ class trainModel():
     
     '''
     
-    def __init__(self, model,train_data = None, test_data = None,validation_steps =50, step_per_epoch = 50 ,ckpp ='../../models/SemImSeg_model_EfficientNetV2B0.h5',  val_subsplits = 5,  batch_size=64,epochs=70,sample_image = None,sample_mask = None,display_callback = None):
+    def __init__(self, model,train_data = None, test_data = None,validation_steps =50, step_per_epoch = 50 ,  val_subsplits = 5,  batch_size=64,epochs=70,sample_image = None,sample_mask = None,display_callback = None, fineTune=False,modelDir = None):
         self.model_checkpoint_callback = []
-
-        self.model = model
+        self.modelDir = modelDir
+        if self.fineTune == True:
+             self.model = tf.keras.models.load_model(self.modelDir)
+             self.model.compile(
+                    optimizer='adam',#tfa.optimizers.Yogi(learning_rate=0.001),
+                    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                    metrics=['accuracy'])
+        else:
+            
+            self.model = model
         self.train_data = train_data
 
         self.test_data  = test_data
@@ -38,8 +46,10 @@ class trainModel():
         self.sample_mask = sample_mask
         self.step_per_epoch = step_per_epoch
         self.validation_steps = validation_steps
-        self.ckpp = ckpp
+        self.ckpp = self.modelDir
         self.display_callback = display_callback
+        self.fineTune = fineTune
+        self.modelDir = modelDir
         self.history = []
         
 

@@ -62,6 +62,7 @@ class gitCommands():
         return 
     def gitPush(self):
         #
+        self.gitPull()
         self.gitAdd()
         self.gitCommit()
         cmd = 'git push https://'+self.token+'@github.com/'+self.username+'/'+self.repo_name+'.git'
