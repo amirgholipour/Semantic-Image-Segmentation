@@ -8,7 +8,7 @@ def get_hyper_paras():
     FINE_TUNE = False
     base, sourceRepoName = os.path.split(os.getcwd())
     refRepoName = 'SIS-Inference'
-    model_dir= base +'/'+refRepoName +'/'+ 'models/SemImSeg_model_EfficientNetV2B0_.tf'
+    model_dir= base +'/'+refRepoName +'/'+ 'models/SemImSeg_model_EfficientNetV2B0_.h5'
     
     refRepoDir = base +'/'+refRepoName 
     return BATCH,STEPS_PER_EPOCH,VALIDATION_STEPS,EPOCHS,VAL_SUBSPLITS,FINE_TUNE,model_dir,refRepoName,sourceRepoName,refRepoDir

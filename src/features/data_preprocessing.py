@@ -29,11 +29,11 @@ class preprocessData():
     ohe:
         One hot  Encoder definition file
     '''
-    def __init__(self, images = None,masks = None,normalize= False):
+    def __init__(self, images = None,masks = None,normalize= False,batch_size=None):
         self.normalize = normalize
         self.images = images
         self.masks = masks
-        self.batch = 64
+        self.batch = batch_size
         self.at = tf.data.AUTOTUNE
         self.buffer  = 1000
         self.size = (256,256)

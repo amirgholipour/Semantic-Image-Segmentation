@@ -28,14 +28,14 @@ class DiceLoss(Loss):
 
     def __call__(self, y_true, y_pred):
         # print(y_pred)
-        return 1.0 - dice_coefficient(
+        return (1.0 - dice_coefficient(
             tf.cast(y_true, tf.float32),
             tf.cast(y_pred, tf.float32),
             beta=self.beta,
             class_weights=self.class_weights,
             smooth=self.smooth,
             threshold=None
-        )
+        ))
 
 
 class TverskyLoss(Loss):
@@ -91,10 +91,12 @@ class BinaryCELoss(Loss):
 class CategoricalCELoss(Loss):
     def __init__(self, class_weights=None):
         super().__init__(name="categorical_crossentropy")
-        self.class_weights = class_weights
+        self.class_weights = class_weights if class_weights is not None else 1.0
 
     def __call__(self, y_true, y_pred):
         return categorical_crossentropy(
+            # y_true,
+            # y_pred,
             tf.cast(y_true, tf.float32),
             tf.cast(y_pred, tf.float32),
             class_weights=self.class_weights

@@ -128,7 +128,7 @@ class buildModel():
             x =  tf.keras.layers.Concatenate()([x, skip])
             
           # This is the last layer of the model
-          x = tf.keras.layers.Conv2DTranspose(filters=self.numOutClass, kernel_size=3, strides=2, padding='same')(x)           ## 64x64 -> 128x128
+          x = tf.keras.layers.Conv2DTranspose(filters=self.numOutClass, kernel_size=3, strides=2, padding='same',activation="softmax")(x)           ## 64x64 -> 128x128
           self.model = tf.keras.Model(inputs=inputs, outputs=x)
 
 
@@ -148,9 +148,15 @@ class buildModel():
         '''
         
         self.model.compile(
-        optimizer='adam',#tfa.optimizers.Yogi(learning_rate=0.001),
-        # loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
-        loss = tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0) + tasm.losses.DiceLoss(),metrics=[tasm.metrics.IOUScore(threshold=0.5)])
+        # optimizer='adam',
+        # optimizer = tf.keras.optimizers.SGD(learning_rate=0.1, momentum=0.9),    
+        # tfa.optimizers.Yogi(learning_rate=0.001),
+        optimizer = tf.keras.optimizers.Adam(learning_rate=0.04),
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),#metrics=['accuracy'])
+        # loss = tasm.losses.DiceLoss() + tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0), #+ tasm.losses.DiceLoss(),
+        # loss = tasm.losses.DiceLoss(),#tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0) + tasm.losses.DiceLoss(),
+        # metrics=[tasm.metrics.IOUScore(threshold=0.5)])
+        metrics=['accuracy'])
 #         return self.model
     
     def checkDataModel(self):
@@ -179,15 +185,15 @@ class buildModel():
         -------
         
         '''
-#         if self.pre_weight_flag ==True:
-#             self.model = tf.keras.models.load_model('./models/SemImSeg_model_EfficientNetV2B0.h5')
-#         else:
+        if self.pre_weight_flag ==True:
+            self.model = tf.keras.models.load_model('./models/SemImSeg_model_EfficientNetV2B0.h5')
+        else:
                 
-#             self.defineModel()
-        base_model, layers, layer_names = tasm.create_base_model(name=self.model_name, weights=self.weights, height=self.height, width=self.width, include_top=False, pooling=None)
+            self.defineModel()
+#         base_model, layers, layer_names = tasm.create_base_model(name=self.model_name, weights=self.weights, height=self.height, width=self.width, include_top=False, pooling=None)
 
-        BACKBONE_TRAINABLE = False
-        self.model = tasm.DeepLabV3plus(n_classes=59, base_model=base_model, output_layers=layers, backbone_trainable=BACKBONE_TRAINABLE)
+#         BACKBONE_TRAINABLE = False
+#         self.model = tasm.DeepLabV3(n_classes=59, base_model=base_model, output_layers=layers, backbone_trainable=BACKBONE_TRAINABLE)
         self.CompileModel()
         self.model.build((None, self.height, self.width, 3))
         self.model.summary()

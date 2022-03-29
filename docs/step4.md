@@ -4,7 +4,7 @@ nav_order: 3
 ---
 [Back to the previous section](step3.md)
 
-# Step 4: Licence plate recognition
+# Step 4: Semantic Image Segmention for fashion usecase
 
 Now that you know how the environment works, the real work can begin!
 
@@ -32,7 +32,7 @@ Once you're finished, you can come back here and [head to the next section.](ste
 * [Step 1: Starting a Jupyter environment](step1.md)
 * [Step 2: The Jupyter environment](step2.md)
 * [Step 3: Notebooks](step3.md)
-* [Step 4: Semantic image Segmentation](step4.md)**<-- you are here**
+* [Step 4: Semantic image Segmentation for fashion usecase](step4.md)**<-- you are here**
 * [Step 5: Packaging the model as an API](step5.md)
 * [Step 6: Packaging our application](step6.md)
 * [Step 7: Testing the application](step7.md)

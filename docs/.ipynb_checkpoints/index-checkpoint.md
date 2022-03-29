@@ -3,7 +3,7 @@ layout: default
 nav_order: 1
 ---
 
-# Red Hat OpenShift Data Science Workshop - Licence plate recognition
+# Red Hat OpenShift Data Science Workshop - Semantic image Segmentation
 
 ## Introduction
 
@@ -35,7 +35,7 @@ If you're ready,  [let's start!](step1.md)
 * [Step 1: Starting a Jupyter environment](step1.md)
 * [Step 2: The Jupyter environment](step2.md)
 * [Step 3: Notebooks](step3.md)
-* [Step 4: Semantic Image Segmentation](step4.md)
+* [Step 4: Semantic image Segmentation for fashion usecase](step4.md)
 * [Step 5: Packaging the model as an API](step5.md)
 * [Step 6: Packaging our application](step6.md)
 * [Step 7: Testing the application](step7.md)

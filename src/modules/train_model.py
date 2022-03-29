@@ -86,12 +86,15 @@ class trainModel():
         self.model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
             filepath=self.ckpp,
             #save_weights_only=True,
-            monitor='iou_score',#monitor='val_accuracy',
+            # monitor='iou_score',
+            monitor='val_accuracy',
             mode='max',
             save_best_only=True)
         ## Early Stoping
         self.early_stopping_callback = tf.keras.callbacks.EarlyStopping(
-            monitor='iou_score', patience=20, #monitor='val_loss', patience=20, 
+            # monitor='iou_score', 
+            monitor='val_loss',
+            patience=20, #monitor='val_loss', patience=20, 
         )
         ## Train the model and save the historical information
         self.history = self.model.fit(

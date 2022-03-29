@@ -47,7 +47,7 @@ In the "file-browser" like window you're in right now, you'll find the files and
 * [Step 1: Starting a Jupyter environment](step1.md)
 * [Step 2: The Jupyter environment](step2.md)**<-- you are here**
 * [Step 3: Notebooks](step3.md)
-* [Step 4: Semantic image Segmentation](step4.md)
+* [Step 4: Semantic image Segmentation for fashion usecase](step4.md)
 * [Step 5: Packaging the model as an API](step5.md)
 * [Step 6: Packaging our application](step6.md)
 * [Step 7: Testing the application](step7.md)
