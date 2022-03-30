@@ -88,6 +88,7 @@ class trainModel():
             #save_weights_only=True,
             # monitor='iou_score',
             monitor='val_accuracy',
+            # monitor=['val_sparse_categorical_crossentropy'],
             mode='max',
             save_best_only=True)
         ## Early Stoping

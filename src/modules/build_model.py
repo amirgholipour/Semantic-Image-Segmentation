@@ -148,15 +148,19 @@ class buildModel():
         '''
         
         self.model.compile(
-        # optimizer='adam',
+        optimizer='adam',
         # optimizer = tf.keras.optimizers.SGD(learning_rate=0.1, momentum=0.9),    
         # tfa.optimizers.Yogi(learning_rate=0.001),
-        optimizer = tf.keras.optimizers.Adam(learning_rate=0.04),
-        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),#metrics=['accuracy'])
+        # optimizer = tf.keras.optimizers.Adam(learning_rate=0.04),
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), #metrics=['accuracy'])
         # loss = tasm.losses.DiceLoss() + tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0), #+ tasm.losses.DiceLoss(),
-        # loss = tasm.losses.DiceLoss(),#tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0) + tasm.losses.DiceLoss(),
+        # loss = tasm.losses.DiceLoss(),#tasm.losses.CategoricalFocalLoss(alpha=0.25, gamma=2.0) + 
+        # loss = tasm.losses.DiceLoss(),
         # metrics=[tasm.metrics.IOUScore(threshold=0.5)])
-        metrics=['accuracy'])
+        metrics=['accuracy']
+        # metrics = tf.keras.metrics.MeanIoU(num_classes=self.numOutClass, name='MIoU', dtype=None)
+        # metrics = [tf.keras.metrics.SparseCategoricalCrossentropy(name='sparse_categorical_crossentropy',dtype=None,from_logits=False,axis=-1),'accuracy']
+        )
 #         return self.model
     
     def checkDataModel(self):
@@ -193,7 +197,7 @@ class buildModel():
 #         base_model, layers, layer_names = tasm.create_base_model(name=self.model_name, weights=self.weights, height=self.height, width=self.width, include_top=False, pooling=None)
 
 #         BACKBONE_TRAINABLE = False
-#         self.model = tasm.DeepLabV3(n_classes=59, base_model=base_model, output_layers=layers, backbone_trainable=BACKBONE_TRAINABLE)
+#         self.model = tasm.DeepLabV3(n_classes=self.numOutClass, base_model=base_model, output_layers=layers, backbone_trainable=BACKBONE_TRAINABLE)
         self.CompileModel()
         self.model.build((None, self.height, self.width, 3))
         self.model.summary()
