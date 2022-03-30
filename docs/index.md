@@ -20,7 +20,7 @@ In this introductory workshop, you'll learn how to use **Red Hat OpenShift Data 
 * Then we'll automatically produce the semantic image segmentation results like this image:
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/sample_mask.png "Do semantic image segmentation")
+![alt text](./assets/img/sample_mask.jpg "Do semantic image segmentation")
 {: refdef}
 
 
