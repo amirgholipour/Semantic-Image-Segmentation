@@ -5,7 +5,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-
+import random
 
 import tensorflow as tf
 
@@ -29,11 +29,11 @@ class preprocessData():
     ohe:
         One hot  Encoder definition file
     '''
-    def __init__(self, images = None,masks = None,normalize= False):
+    def __init__(self, images = None,masks = None,normalize= False,batch_size=None):
         self.normalize = normalize
         self.images = images
         self.masks = masks
-        self.batch = 64
+        self.batch = batch_size
         self.at = tf.data.AUTOTUNE
         self.buffer  = 1000
         self.size = (256,256)
@@ -56,21 +56,25 @@ class preprocessData():
         return mask  
     
     def brightness(self,img, mask):
-        img = tf.image.adjust_brightness(img, 0.1)
+        bri_ratio = random.uniform(.05, .4)
+        img = tf.image.adjust_brightness(img, bri_ratio)
         return img, mask
 
     def gamma(self,img, mask):
-        img = tf.image.adjust_gamma(img, 0.1)
+        gama_ratio = random.uniform(.05, .4)
+        img = tf.image.adjust_gamma(img, gama_ratio)
         return img, mask
 
     def hue(self,img, mask):
-        img = tf.image.adjust_hue(img, -0.1)
+        hue_ratio = random.uniform(.05, .4)
+        img = tf.image.adjust_hue(img, -hue_ratio)
         return img, mask
 
     def crop(self,img, mask):
-        img = tf.image.central_crop(img, 0.7)
+        crop_size = random.uniform(.5, .9)
+        img = tf.image.central_crop(img, crop_size)
         img = tf.image.resize(img, self.size)
-        mask = tf.image.central_crop(mask, 0.7)
+        mask = tf.image.central_crop(mask, crop_size)
         mask = tf.image.resize(mask, self.size)
         mask = tf.cast(mask, tf.uint8)
         return img, mask
@@ -151,7 +155,8 @@ class preprocessData():
         self.splitTrainTest()
         self.dataAugmentation()
         ### Prepare data in the form of batch processing
-        self.train = self.train.cache().shuffle(self.buffer).batch(self.batch).repeat()
+#         self.train = self.train.cache().shuffle(self.buffer).batch(self.batch).repeat()
+        self.train = self.train.shuffle(self.buffer).batch(self.batch).repeat()
         self.train = self.train.prefetch(buffer_size=self.at)
         self.val = self.val.batch(self.batch)
         return self.train, self.val,self.sample_image, self.sample_mask

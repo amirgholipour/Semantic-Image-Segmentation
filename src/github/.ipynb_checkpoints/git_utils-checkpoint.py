@@ -1,4 +1,3 @@
-
 import warnings
 warnings.filterwarnings('ignore')
 import os
@@ -62,6 +61,7 @@ class gitCommands():
         return 
     def gitPush(self):
         #
+        self.gitSetup()
         self.gitPull()
         self.gitAdd()
         self.gitCommit()
@@ -76,6 +76,7 @@ class gitCommands():
         return 
     def gitPull(self):
         # cmd = 'git push '
+        self.gitSetup()
         cmd = 'git pull '
 
         pipe = subprocess.Popen(cmd, shell=True, cwd=self.repo_dir,stdout = subprocess.PIPE,stderr = subprocess.PIPE )
@@ -84,6 +85,3 @@ class gitCommands():
         pipe.wait()
         return 
     
-
-
-

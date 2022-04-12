@@ -13,6 +13,7 @@ class buildModel():
     '''
     The model being used here is a modified U-Net. A U-Net consists of an encoder (downsampler) and decoder (upsampler). In-order to learn robust features and reduce the number of trainable parameters, you will use a pretrained model - EfficientNetV2B0 - as the encoder. For the decoder, you will use the upsample block, which is already implemented in the pix2pix example in the TensorFlow Examples repo. (Check out the pix2pix: Image-to-image translation with a conditional GAN tutorial in a notebook.)
     ----------
+    EfficientNetV2B0
 
     Returns
     -------
@@ -20,7 +21,7 @@ class buildModel():
         Deep learning based Model
     
     '''
-    def __init__(self,train_data=None, modelName = 'EfficientNetV2B0', input_shape = [256, 256, 3], numOutClass = 59,pre_weight_flag = False, weights="imagenet", include_top=False, pooling=None, alpha=1.0,depth_multiplier=1, dropout=0.001):
+    def __init__(self,train_data=None, modelName = 'EfficientNetB1', input_shape = [256, 256, 3], numOutClass = 59,pre_weight_flag = False, weights="imagenet", include_top=False, pooling=None, alpha=1.0,depth_multiplier=1, dropout=0.001):
         self.train_data = train_data
         self.model_name = modelName
         self.base_model = []
@@ -170,13 +171,25 @@ class buildModel():
         
         example = next(iter(self.train_data))
         preds = self.model(example[0])
-        plt.imshow(tf.keras.utils.array_to_img(example[0][60]))
+        if float(tf.__version__[:3]) <=5:
+            plt.imshow(tf.keras.preprocessing.image.array_to_img(example[0][60])) ## tensorflow 2.4
+
+        else:
+
+            plt.imshow(tf.keras.utils.array_to_img(example[0][60])) ## tensorflow 2.8
+        
 
         plt.colorbar()
         plt.show()
         pred_mask = tf.argmax(preds, axis=-1)
         pred_mask = tf.expand_dims(pred_mask, -1)
-        plt.imshow(pred_mask[0])
+        
+        if float(tf.__version__[:3]) <=5:
+            plt.imshow(tf.keras.preprocessing.image.array_to_img(pred_mask[0])) ## tensorflow 2.4
+
+        else:
+
+            plt.imshow(pred_mask[0]) ## tensorflow 2.8
         plt.colorbar()
         plt.show()
     

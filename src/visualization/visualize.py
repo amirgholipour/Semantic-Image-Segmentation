@@ -37,7 +37,12 @@ class visualizeData():
             for i in range(len(self.display_list)):
                 plt.subplot(1, len(self.display_list), i+1)
                 plt.title(self.title[i])
-                plt.imshow(tf.keras.utils.array_to_img(self.display_list[i]), cmap='jet') ## tensorflow 2.8
+                if float(tf.__version__[:3]) <=5:
+                    plt.imshow(tf.keras.preprocessing.image.array_to_img(self.display_list[i]), cmap='jet') ## tensorflow 2.4
+                
+                else:
+                    
+                    plt.imshow(tf.keras.utils.array_to_img(self.display_list[i]), cmap='jet') ## tensorflow 2.8
                 plt.axis('off')
             plt.show()
     def create_mask(self):
