@@ -4,7 +4,7 @@ def get_hyper_paras():
     BATCH = 64
     STEPS_PER_EPOCH = 800//BATCH
     VALIDATION_STEPS = 200//BATCH
-    EPOCHS = 50
+    EPOCHS = 100
     VAL_SUBSPLITS = 5
     FINE_TUNE = False
 

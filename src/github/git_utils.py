@@ -77,7 +77,7 @@ class gitCommands():
     def gitPull(self):
         # cmd = 'git push '
         self.gitSetup()
-        cmd = 'git pull '
+        cmd = 'git pull --ff-only'
 
         pipe = subprocess.Popen(cmd, shell=True, cwd=self.repo_dir,stdout = subprocess.PIPE,stderr = subprocess.PIPE )
         (out, error) = pipe.communicate()
